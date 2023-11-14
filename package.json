@@ -1,0 +1,11 @@
+{
+  "name": "synatic-technical-exercises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "autoscaler/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sello Mkantjwa <sello@synatic.com>",
+  "license": "ISC"
+}

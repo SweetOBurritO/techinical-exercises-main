@@ -1,15 +1,15 @@
-const RequestCountCollector = require('./RequestCountCollector')
+const RequestCountCollector = require("./RequestCountCollector");
 const RequestCountReporter = require("./RequestCountReporter");
-const startAutoScaler = require('./autoscaler');
+const RequestCountHandler = require("./RequestCountHandler");
+const startAutoScaler = require("./autoscaler");
 
-
+const requestReporter = new RequestCountReporter({ objectMode: true });
 const requestCollector = new RequestCountCollector();
-const requestReporter = new RequestCountReporter({objectMode: true});
+const requestHandler = new RequestCountHandler(requestReporter);
 
-/*
-Your code here
-*/
+requestCollector.on("data", requestHandler.collect);
 
+requestReporter.on("readyToReceive", requestHandler.report);
 
 // Do not change/remove the code below this line
 startAutoScaler(requestCollector, requestReporter);
